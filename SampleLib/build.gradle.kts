@@ -39,8 +39,8 @@ afterEvaluate {
         publications {
             register<MavenPublication>("release") {
                 // Coordinates used to consume the library
-                groupId = "com.github.atifmazhar01"
-                artifactId = "my-library-module"
+                groupId = "com.example.samplelib"
+                artifactId = "SampleLib"
                 version = "1.0.0"
 
                 // Applies the component created by the Android Gradle Plugin
@@ -51,8 +51,15 @@ afterEvaluate {
         // Define where the library will be built locally before pushing
         repositories {
             maven {
-                name = "LocalRepo"
-                url = uri(layout.buildDirectory.dir("outputs/maven-repo"))
+//                name = "LocalRepo"
+//                url = uri(layout.buildDirectory.dir("outputs/maven-repo"))
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/atifmazhar01/SampleLib")   // ✅ your github username + repo name
+
+                credentials {
+                    username = providers.gradleProperty("gpr.user").orElse(System.getenv("USERNAME") ?: "").get()
+                    password = providers.gradleProperty("gpr.key").orElse(System.getenv("TOKEN") ?: "").get()
+                }
             }
         }
     }
