@@ -39,8 +39,8 @@ afterEvaluate {
         publications {
             register<MavenPublication>("release") {
                 groupId = "com.example.samplelib"
-                artifactId = "app-sample-lib"
-                version = "1.0.0"
+                artifactId = "samplelib"
+                version = "1.0.1"
 
                 from(components["release"])
 
