@@ -38,14 +38,34 @@ afterEvaluate {
     publishing {
         publications {
             register<MavenPublication>("release") {
-                // Coordinates used to consume the library
                 groupId = "com.example.samplelib"
-                artifactId = "SampleLib"
+                artifactId = "app-sample-lib"
                 version = "1.0.0"
 
-                // Applies the component created by the Android Gradle Plugin
                 from(components["release"])
+
+                // Add this POM block to explicitly link the artifact to your GitHub repo
+                pom {
+                    name.set("SampleLib")
+                    description.set("An Android sample library")
+                    url.set("https://github.com/atifmazhar01/AppSampleLib")
+
+                    scm {
+                        connection.set("scm:git:github.com/atifmazhar01/AppSampleLib.git")
+                        developerConnection.set("scm:git:ssh://github.com/atifmazhar01/AppSampleLib.git")
+                        url.set("https://github.com/atifmazhar01/AppSampleLib")
+                    }
+                }
             }
+//            register<MavenPublication>("release") {
+//                // Coordinates used to consume the library
+//                groupId = "com.example.samplelib"
+//                artifactId = "SampleLib"
+//                version = "1.0.0"
+//
+//                // Applies the component created by the Android Gradle Plugin
+//                from(components["release"])
+//            }
         }
 
         // Define where the library will be built locally before pushing
