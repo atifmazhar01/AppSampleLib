@@ -54,7 +54,7 @@ afterEvaluate {
 //                name = "LocalRepo"
 //                url = uri(layout.buildDirectory.dir("outputs/maven-repo"))
                 name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/atifmazhar01/AppSampleLib.git")   // ✅ your github username + repo name
+                url = uri("https://maven.pkg.github.com/atifmazhar01/AppSampleLib")   // ✅ your github username + repo name
 
                 credentials {
                     username = providers.gradleProperty("gpr.user").orElse(System.getenv("USERNAME") ?: "").get()
